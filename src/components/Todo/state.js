@@ -11,7 +11,7 @@ const reducerFunctions = {
         ...action,
     }),
 
-    openCreateDialogForMainTodo: (state,{createDialogOpen, target}) =>({ ...state, createDialogOpen , target}),
+    toggleTodoMain: (state,{createDialogOpen, target}) =>({ ...state, createDialogOpen , target:'main'}),
    
     addMainTodo: (state, newTodo) => {
 

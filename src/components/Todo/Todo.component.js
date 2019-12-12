@@ -2,7 +2,14 @@ import React, { memo, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import MuiGrid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
+import { 
+    Dialog, 
+    DialogContent,
+    DialogContentText,
+    TextField, 
+    DialogTitle,
+    DialogActions,
+} from '@material-ui/core';
 import { spacing } from '@material-ui/system';
 import { styled } from '@material-ui/styles';
 import { useSelector, useDispatch  } from 'react-redux';
@@ -81,7 +88,25 @@ function TodoComponent(props) {
                 </Grid>
             </Grid>
             <Dialog open={createDialogOpen} onClose={handleDialogClose} aria-labelledby="form-dialog-title">
-
+                <DialogTitle id="form-dialog-title">Create Tod</DialogTitle>
+                <DialogContent>
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="todoLabel"
+                        label="Enter Todo Item"
+                        type="text"
+                        fullWidth
+                    />
+                    </DialogContent>
+                    <DialogActions>
+                    <Button onClick={handleDialogClose} color="primary">
+                        Cancel
+                    </Button>
+                    <Button onClick={handleDialogClose} color="primary">
+                        Add Todo
+                    </Button>
+                </DialogActions>
             </Dialog>
         </div>
        

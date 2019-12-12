@@ -25,24 +25,25 @@ function useTodo (props) {
     }
 
     function createMainTodo(){
-        console.log("");
-        console.log("Open sesame");
         reducerDispatch(
             {
-                type: 'createDialogOpen',
+                type: 'toggleTodoMain',
                 createDialogOpen: true,
-                target:'main',
             }
         )
     }
 
     function createSubTodo() {
-
+       
     }
 
-    
     function handleDialogClose() {
-
+        reducerDispatch(
+            {
+                type: 'toggleTodoMain',
+                createDialogOpen: false,
+            }
+        )
     }
 
     return {
