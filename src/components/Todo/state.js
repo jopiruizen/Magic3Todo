@@ -40,7 +40,30 @@ const reducerFunctions = {
             mainList: newMainlist,
         }
     },
-    
+
+    deleteSub: (state, { selectedTodo, item } ) => {
+
+        function deleteReducer (newList, subItem) {
+            return ( subItem.id !== item.id? [...newList, subItem] : newList);
+        }
+
+        const newMainlist = state.mainList.map((mainItem) => {
+            if (mainItem.id === selectedTodo.id){
+                 return {
+                     ...mainItem,
+                     sublist: mainItem.sublist.reduce(deleteReducer, []),
+                 }
+            }
+            return {...mainItem};
+        });
+        return {
+            ...state,
+            mainList: newMainlist,
+            subList: newMainlist.filter((item)=> item.id === selectedTodo.id)[0].sublist, 
+        }
+    },
+
+
     selectTodo: (state, { selectedTodo }) => {
         return {
             ...state,

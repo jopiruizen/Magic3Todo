@@ -36,18 +36,10 @@ function ListItem(props) {
     }
 
     function handleSelect(){
-        onSelect(data);
+        if (onSelect) {
+            onSelect(data);
+        }
     }
-
-    useEffect(()=>{
-        console.log("");
-        console.log(data);
-    }, [])
-
-    useEffect(()=>{
-        console.log("");
-        console.log(data);
-    }, [data])
 
     function containerClass(){
         if (data.selected) {

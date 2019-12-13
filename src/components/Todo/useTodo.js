@@ -24,7 +24,7 @@ function useTodo (props) {
     }
 
     function handleSubDelete(data) {
-
+        dispatch({ type: 'deleteSub', item: data , selectedTodo});
     }
 
     function handleMainSelect(data){
