@@ -1,4 +1,4 @@
-import  { useEffect, useReducer } from 'react';
+import  { useEffect, useReducer, useState } from 'react';
 import { useSelector, useDispatch  } from 'react-redux';
 import { reducer, createDefaultState} from './state';
 
@@ -6,7 +6,8 @@ import { reducer, createDefaultState} from './state';
 function useTodo (props) {
     
     
-    const [reducedState, reducerDispatch] = useReducer(reducer, createDefaultState());
+    const [reducedState, dispatch] = useReducer(reducer, createDefaultState());
+    const [todoLabel, setTodoLabel] = useState('');
 
     function handleMainComplete(data) {
 
@@ -25,12 +26,7 @@ function useTodo (props) {
     }
 
     function createMainTodo(){
-        reducerDispatch(
-            {
-                type: 'toggleTodoMain',
-                createDialogOpen: true,
-            }
-        )
+        dispatch( { type: 'toggleTodoMain', createDialogOpen: true } );
     }
 
     function createSubTodo() {
@@ -38,12 +34,24 @@ function useTodo (props) {
     }
 
     function handleDialogClose() {
-        reducerDispatch(
-            {
-                type: 'toggleTodoMain',
-                createDialogOpen: false,
-            }
-        )
+        dispatch( { type: 'toggleTodoMain', createDialogOpen: false });
+    }
+
+    function handleDialogAdd() {
+        const target = reducedState.target;
+        const newTodo = {
+            id: todoLabel,
+            label: todoLabel,
+            completed: false,
+        }
+        if( target === 'main') {
+            dispatch({ type: 'addMainTodo', newTodo });
+        }
+      
+    }
+
+    function handleTextChange(event){
+        setTodoLabel(event.target.value);
     }
 
     return {
@@ -55,6 +63,8 @@ function useTodo (props) {
         handleSubComplete,
         handleSubDelete,
         handleDialogClose,
+        handleDialogAdd,
+        handleTextChange,
     };
 }
 

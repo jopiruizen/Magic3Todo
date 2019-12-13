@@ -3,6 +3,7 @@ export function createDefaultState() {
         mainList: [],
         subList: [],
         createDialogOpen: false,
+        textValue: '',
     };    
 }
 const reducerFunctions = {
@@ -12,11 +13,12 @@ const reducerFunctions = {
     }),
 
     toggleTodoMain: (state,{createDialogOpen, target}) =>({ ...state, createDialogOpen , target:'main'}),
-   
-    addMainTodo: (state, newTodo) => {
+    textValueChange: (state,{textValue}) => ({...state, textValue}),
 
+    addMainTodo: (state, newTodo) => {
         return {
             ...state,
+            createDialogOpen: false,
             mainList: [
                 ...state.mainList,
                 newTodo,
@@ -24,6 +26,7 @@ const reducerFunctions = {
         }
     },
 
+    
     selectTodo: (state, action) => {
 
         return {

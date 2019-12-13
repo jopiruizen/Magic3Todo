@@ -37,12 +37,9 @@ function TodoComponent(props) {
         handleSubComplete,
         createDialogOpen, 
         handleDialogClose,
+        handleDialogAdd,
+        handleTextChange,
     } = useTodo(props);
-
-    console.log("");
-    console.log("");
-    console.log("Todo");
-    console.log(classes);
 
     return(
         <div  className={classes.fullView}>
@@ -97,13 +94,14 @@ function TodoComponent(props) {
                         label="Enter Todo Item"
                         type="text"
                         fullWidth
+                        onChange={handleTextChange}
                     />
                     </DialogContent>
                     <DialogActions>
                     <Button onClick={handleDialogClose} color="primary">
                         Cancel
                     </Button>
-                    <Button onClick={handleDialogClose} color="primary">
+                    <Button onClick={handleDialogAdd} color="primary">
                         Add Todo
                     </Button>
                 </DialogActions>

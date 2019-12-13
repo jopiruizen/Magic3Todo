@@ -1,9 +1,14 @@
 import React, { useEffect, useReducer } from 'react';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
 import MuiGrid from '@material-ui/core/Grid';
 import { spacing } from '@material-ui/system';
 import { styled } from '@material-ui/styles';
+
+import DeleteIcon from '@material-ui/icons/Delete';
+import CheckIcon from '@material-ui/icons/Check';
+
 import makeStyles from '@material-ui/styles/makeStyles';
 import styles from './styles';
 
@@ -32,22 +37,22 @@ function ListItem(props) {
         <Grid  container xs={12}>
             <Grid xs={8}>{data.label}</Grid>
             <Grid xs={2}>
-             <Button className={classes.completeButton}
+             <IconButton size="small" className={classes.completeButton}
                     variant="outlined"
                     color="primary"
                     onClick={handleComplete}
                 >
-                    Complete
-                </Button>
+                   <CheckIcon  ontSize="small" />
+                </IconButton>
             </Grid>
             <Grid xs={2}>
-             <Button className={classes.deleteButton}
+             <IconButton size="small" className={classes.deleteButton}
                     variant="outlined"
                     color="primary"
                     onClick={handleDelete}
                 >
-                    Delete
-                </Button>
+                   <DeleteIcon fontSize="small" />
+                </IconButton>
             </Grid>
         </Grid>
     )
