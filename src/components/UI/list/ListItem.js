@@ -1,7 +1,8 @@
 import React, { useEffect, useReducer } from 'react';
 import PropTypes from 'prop-types';
-import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
+
 import MuiGrid from '@material-ui/core/Grid';
 import { spacing } from '@material-ui/system';
 import { styled } from '@material-ui/styles';
@@ -33,9 +34,24 @@ function ListItem(props) {
         onDelete(data);
     }
 
+
+    useEffect(()=>{
+        console.log("");
+        console.log(data);
+    }, [])
+
+    useEffect(()=>{
+        console.log("");
+        console.log(data);
+    }, [data])
+
     return (
         <Grid  container xs={12}>
-            <Grid xs={8}>{data.label}</Grid>
+            <Grid xs={8}>
+                <Typography variant="body1">
+                    {data.label}
+                </Typography>  
+            </Grid>
             <Grid xs={2}>
              <IconButton size="small" className={classes.completeButton}
                     variant="outlined"

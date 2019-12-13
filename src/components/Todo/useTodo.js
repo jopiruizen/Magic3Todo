@@ -8,6 +8,7 @@ function useTodo (props) {
     
     const [reducedState, dispatch] = useReducer(reducer, createDefaultState());
     const [todoLabel, setTodoLabel] = useState('');
+    const [selectedTodo, setSelectedTodo] = useState(null);
 
     function handleMainComplete(data) {
 
@@ -46,6 +47,8 @@ function useTodo (props) {
         }
         if( target === 'main') {
             dispatch({ type: 'addMainTodo', newTodo });
+        } else {
+            dispatch({ type: 'addSubTodo', newTodo, selectedTodo });
         }
       
     }

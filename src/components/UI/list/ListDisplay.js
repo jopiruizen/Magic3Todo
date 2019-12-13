@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import MuiGrid from '@material-ui/core/Grid';
 import { spacing } from '@material-ui/system';
 import { styled } from '@material-ui/styles';
-import makeStyles from '@material-ui/styles/makeStyles';
 import ListItem from './ListItem';
 
 const Grid = styled(MuiGrid)(spacing);

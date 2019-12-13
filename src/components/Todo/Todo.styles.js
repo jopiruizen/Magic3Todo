@@ -12,7 +12,7 @@ const styles = (theme) => ({
     },
 
     mainTodo: {
-      backgroundColor: '#FF9900',
+      backgroundColor: '#EFEFEF',
       height: '100%',
     },
 
