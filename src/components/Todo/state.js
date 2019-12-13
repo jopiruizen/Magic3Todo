@@ -12,7 +12,8 @@ const reducerFunctions = {
         ...action,
     }),
 
-    toggleTodoMain: (state,{createDialogOpen, target}) =>({ ...state, createDialogOpen , target:'main'}),
+    toggleTodoMain: (state,{createDialogOpen}) =>({ ...state, createDialogOpen , target:'main'}),
+    toggleTodoSub: (state,{createDialogOpen}) =>({ ...state, createDialogOpen , target:'sub'}),
     textValueChange: (state,{textValue}) => ({...state, textValue}),
 
     addMainTodo: (state, { newTodo } ) => {
@@ -36,7 +37,30 @@ const reducerFunctions = {
                 }
                 return  {...item, selected: false};
             }),
+            subList: (selectedTodo.sublist? selectedTodo.sublist: []),
         }
+    },
+
+    addSubTodo: (state, { newTodo, selectedTodo } ) => {
+        const newMainList = state.mainList.map((item) => {
+            if (selectedTodo.id === item.id) {
+                return {
+                    ...item,
+                    sublist: (item.sublist ? [...item.sublist, newTodo] : [newTodo]),
+                }
+            }
+            return { ...item};
+        });
+        
+        if (selectedTodo) {
+            return {
+                ...state,
+                createDialogOpen: false,
+                mainList: newMainList,
+                subList: newMainList.filter((item)=> item.id === selectedTodo.id)[0].sublist, 
+            }
+        }
+        return {...state, createDialogOpen: false};
     },
 }
 

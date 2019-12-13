@@ -31,7 +31,7 @@ function TodoComponent(props) {
         mainList,
         subList,
         createMainTodo,
-        createSubItem,
+        createSubTodo,
 
         handleMainDelete,
         handleMainComplete,
@@ -44,9 +44,26 @@ function TodoComponent(props) {
         handleDialogClose,
         handleDialogAdd,
         handleTextChange,
+        subVisible,
         
     } = useTodo(props);
 
+
+    function renderSubButton(){
+        if(subVisible) {
+            return( 
+                <Grid xs={12}>
+                    <Button className={classes.deleteButton}
+                        variant="outlined"
+                        color="primary"
+                        onClick={createSubTodo}
+                    >
+                        Create Sub Item
+                    </Button>
+                </Grid>
+            )
+        }
+    }
     return(
         <div  className={classes.fullView}>
             <Grid container xs={12} className={classes.todoPage}>
@@ -79,16 +96,7 @@ function TodoComponent(props) {
                             onDelete={handleSubDelete}
                         />
                     </Grid>
-                    
-                    <Grid xs={12}>
-                        <Button className={classes.deleteButton}
-                            variant="outlined"
-                            color="primary"
-                            onClick={createSubItem}
-                        >
-                            Create Sub Item
-                        </Button>
-                    </Grid>
+                    {renderSubButton()}
                 </Grid>
             </Grid>
             <Dialog open={createDialogOpen} onClose={handleDialogClose} aria-labelledby="form-dialog-title">

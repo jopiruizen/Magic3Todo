@@ -9,6 +9,7 @@ function useTodo (props) {
     const [reducedState, dispatch] = useReducer(reducer, createDefaultState());
     const [todoLabel, setTodoLabel] = useState('');
     const [selectedTodo, setSelectedTodo] = useState(null);
+    const [subVisible, setSubVisible] = useState(false);
 
     function handleMainComplete(data) {
 
@@ -27,11 +28,8 @@ function useTodo (props) {
     }
 
     function handleMainSelect(data){
-        console.log("");
-        console.log("");
-        console.log("handleMainSelect()");
-        console.log(data);
         setSelectedTodo(data);
+        setSubVisible(true);
         dispatch({ type: 'selectTodo', selectedTodo: data });
     }
 
@@ -40,7 +38,7 @@ function useTodo (props) {
     }
 
     function createSubTodo() {
-       
+        dispatch( { type: 'toggleTodoSub', createDialogOpen: true } );
     }
 
     function handleDialogClose() {
@@ -59,18 +57,17 @@ function useTodo (props) {
         } else {
             dispatch({ type: 'addSubTodo', newTodo, selectedTodo });
         }
-      
     }
 
     function handleTextChange(event){
         setTodoLabel(event.target.value);
     }
 
-    
     return {
         ...reducedState,
         createMainTodo,
         createSubTodo,
+        subVisible,
         handleMainComplete,
         handleMainDelete,
         handleMainSelect,
