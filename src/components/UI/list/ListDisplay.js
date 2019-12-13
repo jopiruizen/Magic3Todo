@@ -13,14 +13,16 @@ function ListDisplay (props) {
         list,
         onComplete,
         onDelete,
+        onSelect,
     } = props;
-    
+ 
     function renderListItems() {
         return list.map((item) => (
             <ListItem 
                 data={item}
                 onComplete={onComplete}
                 onDelete={onDelete}
+                onSelect={onSelect}
             />
         ))
     }

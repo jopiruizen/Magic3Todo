@@ -22,6 +22,7 @@ function ListItem(props) {
         data,
         onDelete,
         onComplete,
+        onSelect,
     } = props;
 
     const classes = useStyles();
@@ -34,6 +35,9 @@ function ListItem(props) {
         onDelete(data);
     }
 
+    function handleSelect(){
+        onSelect(data);
+    }
 
     useEffect(()=>{
         console.log("");
@@ -45,32 +49,41 @@ function ListItem(props) {
         console.log(data);
     }, [data])
 
+    function containerClass(){
+        if (data.selected) {
+            return classes.itemContainerSelected;
+        }
+        return classes.itemContainer
+    }
+
     return (
-        <Grid  container xs={12}>
-            <Grid xs={8}>
-                <Typography variant="body1">
-                    {data.label}
-                </Typography>  
+        <div className={containerClass()} onClick={handleSelect}>
+            <Grid  container xs={12}>
+                <Grid xs={8}>
+                    <Typography variant="body1">
+                        {data.label}
+                    </Typography>  
+                </Grid>
+                <Grid xs={2}>
+                <IconButton size="small" className={classes.completeButton}
+                        variant="outlined"
+                        color="primary"
+                        onClick={handleComplete}
+                    >
+                    <CheckIcon  ontSize="small" />
+                    </IconButton>
+                </Grid>
+                <Grid xs={2}>
+                <IconButton size="small" className={classes.deleteButton}
+                        variant="outlined"
+                        color="primary"
+                        onClick={handleDelete}
+                    >
+                    <DeleteIcon fontSize="small" />
+                    </IconButton>
+                </Grid>
             </Grid>
-            <Grid xs={2}>
-             <IconButton size="small" className={classes.completeButton}
-                    variant="outlined"
-                    color="primary"
-                    onClick={handleComplete}
-                >
-                   <CheckIcon  ontSize="small" />
-                </IconButton>
-            </Grid>
-            <Grid xs={2}>
-             <IconButton size="small" className={classes.deleteButton}
-                    variant="outlined"
-                    color="primary"
-                    onClick={handleDelete}
-                >
-                   <DeleteIcon fontSize="small" />
-                </IconButton>
-            </Grid>
-        </Grid>
+        </div>
     )
 }
 
@@ -80,7 +93,7 @@ ListItem.propTypes = {
 };
 
 ListItem.defaultProps = {
-    data: {  id: '123', label: 'Todo Item', completed: false},
+    data: {  id: '123', label: 'Todo Item', completed: false, selected: false },
 };
 
 export default ListItem;

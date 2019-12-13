@@ -16,11 +16,6 @@ const reducerFunctions = {
     textValueChange: (state,{textValue}) => ({...state, textValue}),
 
     addMainTodo: (state, { newTodo } ) => {
-
-
-        console.log("");
-        console.log("mainList");
-        console.log(state.mainList);
         return {
             ...state,
             createDialogOpen: false,
@@ -32,10 +27,15 @@ const reducerFunctions = {
     },
 
     
-    selectTodo: (state, action) => {
-
+    selectTodo: (state, { selectedTodo }) => {
         return {
             ...state,
+            mainList: state.mainList.map((item) => {
+                if(item.id === selectedTodo.id) {
+                    return {...item, selected: true};
+                }
+                return  {...item, selected: false};
+            }),
         }
     },
 }

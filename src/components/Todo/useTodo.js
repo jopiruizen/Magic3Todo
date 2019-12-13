@@ -26,6 +26,15 @@ function useTodo (props) {
 
     }
 
+    function handleMainSelect(data){
+        console.log("");
+        console.log("");
+        console.log("handleMainSelect()");
+        console.log(data);
+        setSelectedTodo(data);
+        dispatch({ type: 'selectTodo', selectedTodo: data });
+    }
+
     function createMainTodo(){
         dispatch( { type: 'toggleTodoMain', createDialogOpen: true } );
     }
@@ -57,14 +66,18 @@ function useTodo (props) {
         setTodoLabel(event.target.value);
     }
 
+    
     return {
         ...reducedState,
         createMainTodo,
         createSubTodo,
         handleMainComplete,
         handleMainDelete,
+        handleMainSelect,
+
         handleSubComplete,
         handleSubDelete,
+
         handleDialogClose,
         handleDialogAdd,
         handleTextChange,

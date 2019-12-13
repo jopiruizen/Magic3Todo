@@ -2,6 +2,7 @@ import React, { memo, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import MuiGrid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
+import Fab from '@material-ui/core/Fab';
 import { 
     Dialog, 
     DialogContent,
@@ -31,14 +32,19 @@ function TodoComponent(props) {
         subList,
         createMainTodo,
         createSubItem,
+
         handleMainDelete,
         handleMainComplete,
+        handleMainSelect,
+        
         handleSubDelete,
         handleSubComplete,
+
         createDialogOpen, 
         handleDialogClose,
         handleDialogAdd,
         handleTextChange,
+        
     } = useTodo(props);
 
     return(
@@ -50,6 +56,7 @@ function TodoComponent(props) {
                             list={mainList}
                             onComplete={handleMainComplete}
                             onDelete={handleMainDelete}
+                            onSelect={handleMainSelect}
                         />
                     </Grid>
                     
