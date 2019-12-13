@@ -27,6 +27,19 @@ const reducerFunctions = {
         }
     },
 
+    deleteMain: (state, { item } ) => {
+        function deleteReducer (newList, curItem) {
+            if( curItem.id !== item.id) {
+                return [...newList, curItem];
+            }
+            return newList;
+        }
+        const newMainlist = state.mainList.reduce(deleteReducer,[]);
+        return {
+            ...state,
+            mainList: newMainlist,
+        }
+    },
     
     selectTodo: (state, { selectedTodo }) => {
         return {

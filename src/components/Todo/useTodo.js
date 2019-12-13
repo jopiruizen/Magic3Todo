@@ -16,7 +16,7 @@ function useTodo (props) {
     }
 
     function handleMainDelete(data) {
-
+        dispatch({ type: 'deleteMain', item: data });
     }
 
     function handleSubComplete(data) {
